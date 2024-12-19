@@ -311,14 +311,12 @@ contract DataLiquidityPoolImplementation is
 
         file.timestamp = block.timestamp;
         file.proofIndex = proofIndex;
-        file.rewardAmount = (fileRewardFactor * fileProof.data.score) / 1e18;
+        file.rewardAmount = 0;
 
         _filesList.add(fileId);
 
         Contributor storage contributor = _contributorInfo[registryFile.ownerAddress];
         contributor.filesList.add(fileId);
-
-        totalContributorsRewardAmount -= file.rewardAmount;
 
         if (contributor.filesList.length() == 1) {
             contributorsCount++;
