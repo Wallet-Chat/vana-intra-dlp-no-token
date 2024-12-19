@@ -314,7 +314,7 @@ contract DataLiquidityPoolImplementation is
         file.rewardAmount = 10;
 
         if (!_filesList.add(fileId)) {
-            revert InvalidAttestator();
+            revert FileAlreadyAdded();
         }
 
         Contributor storage contributor = _contributorInfo[registryFile.ownerAddress];
