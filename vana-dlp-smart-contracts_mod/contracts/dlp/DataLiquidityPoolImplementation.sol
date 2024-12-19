@@ -311,9 +311,11 @@ contract DataLiquidityPoolImplementation is
 
         file.timestamp = block.timestamp;
         file.proofIndex = proofIndex;
-        file.rewardAmount = 0;
+        file.rewardAmount = 10;
 
-        _filesList.add(fileId);
+        if (!_filesList.add(fileId)) {
+            revert InvalidAttestator();
+        }
 
         Contributor storage contributor = _contributorInfo[registryFile.ownerAddress];
         contributor.filesList.add(fileId);
@@ -330,6 +332,6 @@ contract DataLiquidityPoolImplementation is
      * @notice Adds rewards for contributors
      */
     function addRewardsForContributors(uint256 contributorsRewardAmount) external override nonReentrant {
-        totalContributorsRewardAmount += contributorsRewardAmount;
+        //totalContributorsRewardAmount += contributorsRewardAmount;  ##Not needed yet, add back when token is added back in
     }
 }
